@@ -10,11 +10,51 @@
   margin: 0 auto;
 }
 .glide__slide {
-  border: 1px solid black;
+  border: 0px solid black;
   line-height: 100px;
   margin: 0;
   text-align: center;
 }
+
+.glide__arrow {
+    position: absolute;
+    display: block;
+    top: 50%;
+    z-index: 2;
+    color: rgba(192,192,192,0.5);
+    text-transform: uppercase;
+    padding: 9px 12px;
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 4px;
+    box-shadow: 0 0.25em 0.5em 0 rgb(0 0 0 / 10%);
+    text-shadow: 0 0.25em 0.5em rgb(0 0 0 / 10%);
+    opacity: 1;
+    cursor: pointer;
+    transition: opacity 150ms ease, border 300ms ease-in-out;
+    transform: translateY(-50%);
+    line-height: 1;
+}
+
+.glide__bullet {
+    background-color: rgba(192,192,192,0.4);
+    width: 9px;
+    height: 9px;
+    padding: 0;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    transition: all 300ms ease-in-out;
+    cursor: pointer;
+    line-height: 0;
+    box-shadow: 0 0.25em 0.5em 0 rgb(0 0 0 / 10%);
+    margin: 0 0.25em;
+}
+.glide__bullet--active {
+    background-color: rgba(192,192,192,0.9);
+}
+
+
+
 
 </style>
 <body>
@@ -23,60 +63,40 @@
 
 <div class="wrap">
   
-  <h4>Slider with 2 perView, focusAt center</h4>
-  
-   <div class="glide multi">
-    <div class="glide__track" data-glide-el="track">
-      <ul class="glide__slides">
-        <li class="glide__slide">1</li>
-        <li class="glide__slide">2</li>
-        <li class="glide__slide">3</li>
-      </ul>
-    </div>
-  </div>
+
   
   
-  <h4>Carousel with 3 perView</h4>
-  <div class="glide multi1">
-    <div class="glide__track" data-glide-el="track">
-      <ul class="glide__slides">
-        <li class="glide__slide">1</li>
-        <li class="glide__slide">2</li>
-        <li class="glide__slide">3</li>
-        <li class="glide__slide">4</li>
-      </ul>
-    </div>
-  </div>
-  
-  <h4>Carousel with 1 perView</h4>
-  <div class="glide hero">
-    <div class="glide__track" data-glide-el="track">
-      <ul class="glide__slides">
-        <li class="glide__slide">1</li>
-        <li class="glide__slide">2</li>
-        <li class="glide__slide">3</li>
-        <li class="glide__slide">4</li>
-      </ul>
-    </div>
-<!--     <div class="glide__arrows" data-glide-el="controls">
-      <button class="glide__arrow glide__arrow--prev" data-glide-dir="<">prev</button>
-      <button class="glide__arrow glide__arrow--next" data-glide-dir=">">next</button> 
-    </div> -->
-  </div>
-  
-  <h4>Carousel with 1 perView and peek</h4>
   <div class="glide heropeek">
+
     <div class="glide__track" data-glide-el="track">
       <ul class="glide__slides">
-        <img class="glide__slide" src="https://s3.envato.com/files/245544225/Inner-Poster-590x300.jpg">
-        <img class="glide__slide" src="http://teamsportbanners.com/skin/frontend/theme1/default/images/cms/softball-banner-design.JPG">
-        <img class="glide_slide" src="https://s3.envato.com/files/245544225/Inner-Poster-590x300.jpg">
+        <img class="glide__slide" src="img/1.png">
+        <img class="glide__slide" src="img/2.png">
+        
       </ul>
     </div>
-<!--     <div class="glide__arrows" data-glide-el="controls">
-      <button class="glide__arrow glide__arrow--prev" data-glide-dir="<">prev</button>
-      <button class="glide__arrow glide__arrow--next" data-glide-dir=">">next</button>
-    </div> -->
+
+
+
+        <div data-glide-el="controls[nav]" class="slider__bullets glide__bullets">
+	    <button data-glide-dir="=0" class= "slider__bullets glide__bullet"></button>
+        <button data-glide-dir="=1" class= "slider__bullets glide__bullet"></button>
+        </div>
+	
+	
+	<div class="glide__track" data-glide-el="track">...</div>
+
+  <div class="glide__arrows" data-glide-el="controls">
+    <button class="glide__arrow glide__arrow--left" data-glide-dir="<"><</button>
+    <button class="glide__arrow glide__arrow--right" data-glide-dir=">">></button>
+  </div>
+	
+	
+	 
+     
+  </div>
+  
+      
   </div>
   
   <script>
@@ -98,29 +118,45 @@ var glideHeroPeek = new Glide('.heropeek', {
   animationDuration: 1000,
   autoplay: 3000,
   focusAt: '1',
+  dots: '.dots',
   startAt: 1,
   perView: 1,
    // set a value to show the previous and next slides peeking in
-  peek: {
-    before: 20,
-    after: 20
-  },
-  gap: 0
+ // peek: {
+  //  before: 20,
+  //  after: 20
+ // },
+  gap: 10,
+  arrows: {
+    prev: '.glider-prev',
+    next: '.glider-next'
+  }	
 });
 
 var glideHero = new Glide('.hero', {
   type: 'carousel',
-  animationDuration: 2000,
-  autoplay: 4500,
+  animationDuration: 3000,
+  autoplay: 2000,
   focusAt: '1',
   startAt: 3,
   perView: 1, 
+  
+  
+  dots: '.dots',
+  arrows: {
+    prev: '.glider-prev',
+    next: '.glider-next'
+  }	
+  
+  
 });
 
-glideMulti.mount();
-glideMulti1.mount();
+
+//glideMulti.mount();
+//glideMulti1.mount();
+
 glideHeroPeek.mount();
-glideHero.mount();
+//glideHero.mount();
 
   
   
